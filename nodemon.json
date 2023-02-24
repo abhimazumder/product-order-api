@@ -1,5 +1,6 @@
 {
     "env": {
+        "PORT" : "3000",
         "ATLAS_PASSWORD" : "Asdfg09876",
         "PRIVATE_JWT_KEY" : "sEcRetPriVAteJwTKEy"
     }

@@ -29,9 +29,20 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res, next) => {
     res.status(400).json({
-        message : "welcome"
+        metadata : {
+            apiName : "product-order-api",
+            createdBy : "Abhishek Mazumder",
+            email : "abhishek.am988@gmail.com"
+        },
+        message : "Documentation is available on GitHub Repository",
+        github : {
+            request : {
+                type : "GET",
+                url : "https://github.com/abhimazumder/product-order-api"
+            }
+        }
     })
-})
+});
 
 app.use('/products', productsRoutes);
 app.use('/orders', ordersRoutes);
