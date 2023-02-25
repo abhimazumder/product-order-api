@@ -94,8 +94,7 @@ router.delete('/:userId', (req, res, next) => {
                 message : "User doesn't exists"
             })
         res.status(200).json({
-            message : "User Deleted",
-            result : result
+            message : "User Deleted"
         })
     })
     .catch(error => {
