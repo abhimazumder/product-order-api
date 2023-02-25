@@ -20,6 +20,10 @@ http://localhost:3000/
 
 #### 2. User Authentication
 
+>Note : Some requests require authentication key which is needed to be passed in headers.
+>User signup is mandatory to generate authentication key.
+>Authentication keys are avlid upto 1 hour once generated.
+
 ##### 2.1. User signup
 
 ```
@@ -88,7 +92,7 @@ Auth : Not Required
 ##### 3.3. View product
 
 ```
-Description : View details of a partiular product with product id
+Description : View details of a partiular product with a valid product id
 Endpoint : http://localhost:3000/products/123456789
 HTTP Method : GET
 Auth : Not Required
@@ -97,18 +101,18 @@ Auth : Not Required
 ##### 3.4. Update product
 
 ```
-Description : Update one or more detail of ona partiular product with product id
+Description : Update one or more detail of a partiular product with a valid product id
 Endpoint : http://localhost:3000/products/123456789
 HTTP Method : PATCH
 Body :
 [
     {
-        "propName" : "name",
-        "value" : "new name"
+        "propName" : "name", //String
+        "value" : "new name" //String
     },
     {
-        "propName" : "price",
-        "value" : "250.0"
+        "propName" : "price", //String
+        "value" : "250.0" //Number
     }
 ]
 Auth : Required
@@ -117,7 +121,72 @@ Auth : Required
 ##### 3.5. Delete product
 
 ```
-Description : Delete  product with product id
+Description : Delete product with a valid product id
+Endpoint : http://localhost:3000/products/123456789
+HTTP Method : DELETE
+Auth : Required
+```
+
+#### 4. Orders
+
+>Note : All requests related to orders require authentication key.
+
+##### 4.1. Create order
+
+```
+Description : Create an order using a valid product id and quantity
+Endpoint : http://localhost:3000/orders
+HTTP Method : POST
+Body : 
+  {
+    "productId" : "123456789", //ObjectID
+    "quantity" : "1" //Number
+}
+Auth : Required
+```
+
+##### 4.2. View all orders
+
+```
+Description : View all orders with count of total orders
+Endpoint : http://localhost:3000/orders
+HTTP Method : GET
+Auth : Required
+```
+
+##### 4.3. View product
+
+```
+Description : View details of a partiular order with valid order id
+Endpoint : http://localhost:3000/orders/123456789
+HTTP Method : GET
+Auth : Not Required
+```
+
+##### 4.4. Update order
+
+```
+Description : Update one or more detail of a partiular order with a valid order id
+Endpoint : http://localhost:3000/products/123456789
+HTTP Method : PATCH
+Body :
+[
+    {
+        "propName" : "productId", //String
+        "value" : "987654321" //ObjectID
+    },
+    {
+        "propName" : "quantity", //String
+        "value" : "2" //Number
+    }
+]
+Auth : Required
+```
+
+##### 4.5. Delete order
+
+```
+Description : Delete order with a valid order id
 Endpoint : http://localhost:3000/products/123456789
 HTTP Method : DELETE
 Auth : Required
