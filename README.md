@@ -6,7 +6,7 @@
   2. Express.js
   3. MongoDB
   4. Postman
-  5. npm Packages - mongoose, bcrypt, jsonwebtoken, multer
+  5. npm Packages - mongoose, bcrypt, jsonwebtoken, multer, nodemon
 
 ### Purpose
 
@@ -20,9 +20,11 @@ http://localhost:3000/
 
 #### 2. User Authentication
 
->Note : Some requests require authentication key which is needed to be passed in headers.
+>Some requests require authentication key which is needed to be passed in headers.
+
 >User signup is mandatory to generate authentication key.
->Authentication keys are avlid upto 1 hour once generated.
+
+>Authentication keys are valid upto 1 hour once generated.
 
 ##### 2.1. User signup
 
@@ -129,7 +131,7 @@ Auth : Required
 
 #### 4. Orders
 
->Note : All requests related to orders require authentication key.
+>All requests related to orders require authentication key.
 
 ##### 4.1. Create order
 
@@ -160,7 +162,7 @@ Auth : Required
 Description : View details of a partiular order with valid order id
 Endpoint : http://localhost:3000/orders/123456789
 HTTP Method : GET
-Auth : Not Required
+Auth : Required
 ```
 
 ##### 4.4. Update order
