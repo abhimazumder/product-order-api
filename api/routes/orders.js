@@ -20,7 +20,7 @@ router.get('/', checkAuth, (req, res, next) => {
                     quantity : doc.quantity,
                     request : {
                         type : "GET",
-                        url : "http://localhost:3000/orders/" + doc._id
+                        url : "http://localhost:" + process.env.PORT + "/orders/" + doc._id
                     }
                 }
             })
@@ -52,7 +52,7 @@ router.post('/', checkAuth, (req, res, next) => {
                 quantity : doc.quantity,
                 request : {
                     type : "GET",
-                    url : "http://localhost:3000/orders/" + doc._id
+                    url : "http://localhost:" + process.env.PORT + "/orders/" + doc._id
                 }
             }
         });
@@ -77,7 +77,7 @@ router.get('/:orderId', (req, res, next) => {
                 productId : doc.productId,
                 request : {
                     type : "GET",
-                    url : "http://localhost:3000/products/" + doc.productId
+                    url : "http://localhost:" + process.env.PORT + "/products/" + doc.productId
                 },
                 quantity : doc.quantity
             });
@@ -108,7 +108,7 @@ router.patch('/:orderId', checkAuth, (req, res, next) => {
             message : "Order Updated",
             request : {
                 type : "GET",
-                url : "http://localhost:3000/orders/" + id
+                url : "http://localhost:" + process.env.PORT + "/orders/" + id
             }
         });
     })
@@ -134,7 +134,7 @@ router.delete('/:orderId', checkAuth, (req, res, next) => {
             message : "Order Deleted",
             request : {
                 type : "GET",
-                url : "http://localhost:3000/orders"
+                url : "http://localhost:" + process.env.PORT + "/orders"
             }
         })
     })

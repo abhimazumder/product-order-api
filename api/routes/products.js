@@ -3,9 +3,10 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
 
-
 const Product = require('../models/product');
 const checkAuth = require('../middleware/check-auth');
+
+const getImageName = require("../utils/getImageName")
 
 const storage = multer.diskStorage({
     destination : function(req, file, cb){
@@ -42,7 +43,7 @@ router.get('/', (req, res, next) => {
                     price : doc.price,
                     request : {
                         type : "GET",
-                        url : "http://localhost:3000/products/" + doc._id
+                        url : "http://localhost:" + process.env.PORT + "/products/" + doc._id
                     }
                 }
             }),
@@ -63,7 +64,7 @@ router.post('/', checkAuth, upload.single('productImage'), (req, res, next) => {
         _id : new mongoose.Types.ObjectId(),
         name : req.body.name,
         price : req.body.price,
-        productImage : "http://localhost:3000/uploads/" + req.file.filename
+        productImage : "http://localhost:" + process.env.PORT + "/uploads/" + req.file.filename
     })
     product
     .save()
@@ -78,7 +79,7 @@ router.post('/', checkAuth, upload.single('productImage'), (req, res, next) => {
                 productImage : doc.productImage,
                 request : {
                     type : "GET",
-                    url : "http://localhost:3000/products/" + doc._id
+                    url : "http://localhost:" + process.env.PORT + "/products/" + doc._id
                 }
             }
         })
@@ -100,7 +101,12 @@ router.get('/:productId', (req, res, next) => {
     .then(doc => {
         console.log(doc);
         if(doc){
-            return res.status(200).json(doc);
+            return res.status(200).json({
+                _id : doc._id,
+                name : doc.name,
+                price : doc.price,
+                productImage : "http://localhost:" + process.env.PORT + "/uploads/" + getImageName(doc.productImage)
+            });
         }
         res.status(404).json({
             message : "No valid entry found for given ID"
@@ -128,7 +134,7 @@ router.patch('/:productId', checkAuth, (req, res, next) => {
             message : "Product Updated",
             request : {
                 type : "GET",
-                url : "http://localhost:3000/products/" + id
+                url : "http://localhost:" + process.env.PORT + "/products/" + id
             }
         });
     })
@@ -153,7 +159,7 @@ router.delete('/:productId', checkAuth, (req, res, next) => {
             message : "Product Deleted",
             request : {
                 type : "GET",
-                url : "http://localhost:3000/products/"
+                url : "http://localhost:" + process.env.PORT + "/products/"
             }
         });
     })

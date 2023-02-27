@@ -167,7 +167,7 @@ Auth : Not Required
 
 ```
 Description : Update one or more detail of a partiular order with a valid order id
-Endpoint : http://localhost:3000/products/123456789
+Endpoint : http://localhost:3000/orders/123456789
 HTTP Method : PATCH
 Body :
 [
@@ -187,7 +187,7 @@ Auth : Required
 
 ```
 Description : Delete order with a valid order id
-Endpoint : http://localhost:3000/products/123456789
+Endpoint : http://localhost:3000/orders/123456789
 HTTP Method : DELETE
 Auth : Required
 ```
