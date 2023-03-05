@@ -65,7 +65,7 @@ router.post('/', checkAuth, (req, res, next) => {
     })
 });
 
-router.get('/:orderId', (req, res, next) => {
+router.get('/:orderId', checkAuth, (req, res, next) => {
     const id = req.params.orderId;
     Order.findById(id)
     .exec()
